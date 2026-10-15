@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="uz" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>26 IT 4-Guruh Dars Jadvali</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+              950: '#172554',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(229, 231, 235, 0.5);
+    }
+    .dark .glass-card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .pulse-glow {
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+    }
+    .active-card {
+      border-left: 4px solid #3b82f6;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen pb-12">
+
+  <!-- Header Header Banner -->
+  <header class="sticky top-0 z-40 glass-card shadow-sm border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap justify-between items-center gap-4">
+      
+      <!-- Logo / Title -->
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
+          <i class="fa-solid fa-graduation-cap text-lg"></i>
+        </div>
+        <div>
+          <h1 class="text-lg sm:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-500 dark:from-blue-400 dark:to-indigo-300">
+            26 IT 4-GURUH
+          </h1>
+          <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">
+            Toshkent shahri Yashnabod IT-Texnikumi
+          </p>
+        </div>
+      </div>
+
+      <!-- Controls & Quick Actions -->
+      <div class="flex items-center space-x-2 sm:space-x-4">
+        
+        <!-- Live Clock Badge -->
+        <div class="hidden md:flex items-center space-x-2 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-sm font-semibold">
+          <i class="fa-regular fa-clock text-blue-500"></i>
+          <span id="liveClock">00:00:00</span>
+        </div>
+
+        <!-- Week Switcher Toggle (1-Hafta / 2-Hafta) -->
+        <div class="flex bg-slate-200 dark:bg-slate-800 p-1 rounded-xl text-xs sm:text-sm font-medium">
+          <button id="week1Btn" onclick="setWeek(1)" class="px-3 py-1.5 rounded-lg transition-all duration-200 font-semibold shadow-sm bg-white text-blue-600 dark:bg-blue-600 dark:text-white">
+            1-Hafta
+          </button>
+          <button id="week2Btn" onclick="setWeek(2)" class="px-3 py-1.5 rounded-lg transition-all duration-200 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+            2-Hafta
+          </button>
+        </div>
+
+        <!-- Dark Mode Toggle -->
+        <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-colors" title="Rejimni o'zgartirish">
+          <i class="fa-solid fa-moon text-base dark:hidden"></i>
+          <i class="fa-solid fa-sun text-base hidden dark:block text-amber-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 space-y-6">
+
+    <!-- Information Header / Sub-title -->
+    <div class="glass-card p-5 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
+            2026-2027 O'quv yili | I-Semestr
+          </span>
+          <span id="currentWeekBadge" class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            1-Hafta
+          </span>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-bold">Kompyuter Tarmoqlari va IT-Servis</h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400">Kunduzgi ta'lim • 1-Bosqich</p>
+      </div>
+
+      <!-- Live Lesson Status Banner -->
+      <div id="statusCard" class="w-full md:w-auto p-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md flex items-center gap-4">
+        <div class="p-3 bg-white/10 rounded-lg text-2xl">
+          <i id="statusIcon" class="fa-solid fa-book-open"></i>
+        </div>
+        <div>
+          <div class="text-xs uppercase tracking-wider font-semibold opacity-80" id="statusLabel">Hozirgi holat</div>
+          <div class="text-base sm:text-lg font-bold" id="statusTitle">Yuklanmoqda...</div>
+          <div class="text-xs font-medium opacity-90" id="statusSubtitle">--</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Times Schedule Legend (Vaqtlar jadvali) -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div class="glass-card p-3 rounded-xl border-l-4 border-emerald-500">
+        <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">1-Para</div>
+        <div class="text-sm font-bold mt-0.5">08:00 – 09:20</div>
+        <div class="text-[11px] text-slate-400 mt-1">Tanaffus: 10 min</div>
+      </div>
+      <div class="glass-card p-3 rounded-xl border-l-4 border-blue-500">
+        <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">2-Para</div>
+        <div class="text-sm font-bold mt-0.5">09:30 – 10:50</div>
+        <div class="text-[11px] text-amber-500 dark:text-amber-400 font-medium mt-1">Katta tanaffus: 30 min</div>
+      </div>
+      <div class="glass-card p-3 rounded-xl border-l-4 border-indigo-500">
+        <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">3-Para</div>
+        <div class="text-sm font-bold mt-0.5">11:20 – 12:40</div>
+        <div class="text-[11px] text-slate-400 mt-1">Tanaffus: 10 min</div>
+      </div>
+      <div class="glass-card p-3 rounded-xl border-l-4 border-purple-500">
+        <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">4-Para</div>
+        <div class="text-sm font-bold mt-0.5">12:50 – 14:10</div>
+        <div class="text-[11px] text-slate-400 mt-1">Darslar tugashi</div>
+      </div>
+    </div>
+
+    <!-- Filters and Day Navigation -->
+    <div class="space-y-4">
+      <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3">
+        
+        <!-- Day Tabs Filter -->
+        <div class="flex overflow-x-auto no-scrollbar gap-1.5 p-1 bg-slate-200/70 dark:bg-slate-900/80 rounded-xl border border-slate-200/50 dark:border-slate-800">
+          <button onclick="filterDay('all')" class="day-tab px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 bg-white dark:bg-blue-600 text-blue-600 dark:text-white shadow-sm" data-day="all">
+            Barchasi
+          </button>
+          <button onclick="filterDay('Dushanba')" class="day-tab px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" data-day="Dushanba">
+            Dushanba
+          </button>
+          <button onclick="filterDay('Seshanba')" class="day-tab px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" data-day="Seshanba">
+            Seshanba
+          </button>
+          <button onclick="filterDay('Chorshanba')" class="day-tab px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" data-day="Chorshanba">
+            Chorshanba
+          </button>
+          <button onclick="filterDay('Payshanba')" class="day-tab px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" data-day="Payshanba">
+            Payshanba
+          </button>
+          <button onclick="filterDay('Juma')" class="day-tab px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" data-day="Juma">
+            Juma
+          </button>
+          <button onclick="filterDay('Shanba')" class="day-tab px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" data-day="Shanba">
+            Shanba
+          </button>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="relative min-w-[220px]">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+          <input type="text" id="searchInput" oninput="renderSchedule()" placeholder="Fan yoki o'qituvchi..." class="w-full pl-9 pr-4 py-2 rounded-xl text-sm bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Schedule Display Grid -->
+    <div id="scheduleContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Dynamic schedule cards will be rendered here -->
+    </div>
+
+    <!-- Footnote & Approval stamp info -->
+    <div class="glass-card p-4 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-stamp text-blue-500 text-base"></i>
+        <span><strong>Tasdiqlagan:</strong> Toshkent shahri "Yashnabod" IT-Texnikum direktori I. Dadajnov (2026-y)</span>
+      </div>
+      <div>
+        <span><strong>Tuzuvchi:</strong> S.X. Qo'chqarov</span>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // System State
+    let currentWeek = 1; // 1-hafta or 2-hafta
+    let activeDayFilter = 'all';
+
+    // Para timings updated with 30 min break after 2nd period
+    const paraTimes = [
+      { num: 'I', name: '1-para', start: '08:00', end: '09:20' },
+      { num: 'II', name: '2-para', start: '09:30', end: '10:50' },
+      { num: 'III', name: '3-para', start: '11:20', end: '12:40' },
+      { num: 'IV', name: '4-para', start: '12:50', end: '14:10' }
+    ];
+
+    // Master Timetable Data based strictly on image
+    const timetableData = {
+      Dushanba: [
+        { para: 'I', subject: 'Kelajak soati', teacher: 'Axmedova M.', room: '303-xona' },
+        { 
+          para: 'II', 
+          isAlternating: true,
+          week1: { subject: 'Axborot xavfsizligi', teacher: 'Karimov I', room: '303-xona' },
+          week2: { subject: 'Jismoniy tarbiya', teacher: 'Tursunboyev L.', room: 'Sport zal' }
+        },
+        { para: 'III', subject: 'Axborot xavfsizligi', teacher: 'Karimov I', room: '303-xona' },
+        { para: 'IV', subject: 'Axborot xavfsizligi / Axborot texnologiyalari', teacher: 'Karimov I', room: '303-xona' }
+      ],
+      Seshanba: [
+        { para: 'I', subject: 'Informatika va axborot texnologiyalari', teacher: 'Omonov S.', room: '303-xona' },
+        { para: 'II', subject: 'Kompyuter tizimlari', teacher: 'Omonov S.', room: '303-xona' },
+        { para: 'III', subject: 'Axborot texnologiyalari', teacher: 'Karimov I', room: '303-xona' },
+        { para: 'IV', subject: 'Fizika va astronomiya', teacher: 'Arziyev Z. / Azimova G.', room: '303-xona' }
+      ],
+      Chorshanba: [
+        { para: 'I', subject: 'Rus tili', teacher: '-', room: '303-xona' },
+        { para: 'II', subject: 'Kompyuter tizimlari', teacher: 'Omonov S.', room: '303-xona' },
+        { para: 'III', subject: 'Elektronika va elektronika', teacher: 'Arziyev Z.', room: '303-xona' },
+        { para: 'IV', subject: 'Ingliz tili', teacher: 'Dexqonova K. / Ibragimova N.', room: '303-xona' }
+      ],
+      Payshanba: [
+        { para: 'I', subject: 'Axborot xavfsizligi', teacher: 'Karimov I', room: '303-xona' },
+        { para: 'II', subject: 'Ingliz tili', teacher: 'Dexqonova K. / Ibragimova N.', room: '303-xona' },
+        { para: 'III', subject: 'Media va axborot savodxonligi', teacher: 'Karimov I', room: '303-xona' }
+      ],
+      Juma: [
+        { para: 'I', subject: 'Ingliz tili', teacher: 'Dexqonova K. / Ibragimova N.', room: '303-xona' },
+        { para: 'II', subject: 'Mehnat muhofazasi va texnika xavfsizligi', teacher: 'Alimadova M.', room: '303-xona' },
+        { para: 'III', subject: 'Axborot xavfsizligi', teacher: 'Karimov I', room: '303-xona' }
+      ],
+      Shanba: [
+        { para: 'I', subject: 'Tarix', teacher: 'Hasanova X.', room: '303-xona' },
+        { para: 'II', subject: 'Ona tili va adabiyot', teacher: 'Usmonova N.', room: '303-xona' },
+        { para: 'III', subject: 'Matematika', teacher: 'Qurbonboyeva A.', room: '303-xona' }
+      ]
+    };
+
+    // Helper: Convert "HH:MM" to total minutes
+    function toMinutes(timeStr) {
+      const [h, m] = timeStr.split(':').map(Number);
+      return h * 60 + m;
+    }
+
+    // Initialize Theme
+    function initTheme() {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.add('dark'); // Default to dark as requested
+      }
+    }
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+    }
+
+    // Set Week Toggle (1-Hafta / 2-Hafta)
+    function setWeek(weekNum) {
+      currentWeek = weekNum;
+      
+      const w1Btn = document.getElementById('week1Btn');
+      const w2Btn = document.getElementById('week2Btn');
+      const badge = document.getElementById('currentWeekBadge');
+
+      if (weekNum === 1) {
+        w1Btn.className = "px-3 py-1.5 rounded-lg transition-all duration-200 font-semibold shadow-sm bg-white text-blue-600 dark:bg-blue-600 dark:text-white";
+        w2Btn.className = "px-3 py-1.5 rounded-lg transition-all duration-200 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+        badge.innerText = "1-Hafta";
+      } else {
+        w2Btn.className = "px-3 py-1.5 rounded-lg transition-all duration-200 font-semibold shadow-sm bg-white text-blue-600 dark:bg-blue-600 dark:text-white";
+        w1Btn.className = "px-3 py-1.5 rounded-lg transition-all duration-200 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+        badge.innerText = "2-Hafta";
+      }
+
+      renderSchedule();
+      updateLiveStatus();
+    }
+
+    // Day Filter Switch
+    function filterDay(day) {
+      activeDayFilter = day;
+      document.querySelectorAll('.day-tab').forEach(btn => {
+        if (btn.getAttribute('data-day') === day) {
+          btn.className = "day-tab px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 bg-blue-600 text-white shadow-sm";
+        } else {
+          btn.className = "day-tab px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+        }
+      });
+      renderSchedule();
+    }
+
+    // Render Schedule Cards
+    function renderSchedule() {
+      const container = document.getElementById('scheduleContainer');
+      const searchQuery = document.getElementById('searchInput').value.toLowerCase().trim();
+      container.innerHTML = '';
+
+      const days = activeDayFilter === 'all' 
+        ? Object.keys(timetableData) 
+        : [activeDayFilter];
+
+      let matchCount = 0;
+
+      days.forEach(day => {
+        const lessons = timetableData[day];
+        
+        // Filter lessons by search query if exists
+        const filteredLessons = lessons.map(lesson => {
+          if (lesson.isAlternating) {
+            return currentWeek === 1 ? { ...lesson.week1, para: lesson.para, isAlternating: true, orig: lesson } : { ...lesson.week2, para: lesson.para, isAlternating: true, orig: lesson };
+          }
+          return lesson;
+        }).filter(item => {
+          return item.subject.toLowerCase().includes(searchQuery) || item.teacher.toLowerCase().includes(searchQuery) || item.room.toLowerCase().includes(searchQuery);
+        });
+
+        if (filteredLessons.length === 0) return;
+        matchCount++;
+
+        // Build Day Card HTML
+        const dayCard = document.createElement('div');
+        dayCard.className = "glass-card rounded-2xl p-5 shadow-sm space-y-4 hover:shadow-md transition-all";
+
+        let dayHeaderIcon = "fa-calendar-day";
+        if (day === 'Dushanba') dayHeaderIcon = "fa-bolt";
+        if (day === 'Juma') dayHeaderIcon = "fa-star";
+
+        let lessonsHTML = '';
+
+        filteredLessons.forEach(item => {
+          const timeInfo = paraTimes.find(p => p.num === item.para);
+          
+          let weekTagHTML = '';
+          if (item.isAlternating) {
+            weekTagHTML = `
+              <span class="ml-2 text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-600 dark:text-amber-300 border border-amber-500/30">
+                ${currentWeek}-hafta
+              </span>
+            `;
+          }
+
+          let roomColor = "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300";
+          if (item.room.includes('Sport')) {
+            roomColor = "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-semibold";
+          }
+
+          lessonsHTML += `
+            <div class="p-3.5 rounded-xl bg-white/60 dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-800/80 space-y-2 hover:border-blue-500/40 transition-colors">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-bold px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300">
+                  ${item.para}-Juftlik (${timeInfo.start}-${timeInfo.end})
+                </span>
+                ${weekTagHTML}
+                <span class="text-xs px-2 py-0.5 rounded-md ${roomColor}">
+                  <i class="fa-solid fa-location-dot text-[10px] mr-1"></i>${item.room}
+                </span>
+              </div>
+              <div class="text-sm font-bold text-slate-900 dark:text-slate-100 leading-snug">
+                ${item.subject}
+              </div>
+              <div class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                <i class="fa-regular fa-user text-blue-500"></i>
+                <span>${item.teacher}</span>
+              </div>
+            </div>
+          `;
+        });
+
+        dayCard.innerHTML = `
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+            <div class="flex items-center space-x-2.5">
+              <div class="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold text-sm">
+                <i class="fa-solid ${dayHeaderIcon}"></i>
+              </div>
+              <h3 class="text-base font-bold">${day}</h3>
+            </div>
+            <span class="text-xs font-medium text-slate-400">${filteredLessons.length} ta dars</span>
+          </div>
+          <div class="space-y-3">
+            ${lessonsHTML}
+          </div>
+        `;
+
+        container.appendChild(dayCard);
+      });
+
+      if (matchCount === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-12 text-center text-slate-400">
+            <i class="fa-solid fa-magnifying-glass text-3xl mb-3 opacity-50"></i>
+            <p class="text-sm font-medium">Hech qanday dars topilmadi!</p>
+          </div>
+        `;
+      }
+    }
+
+    // Live Clock & Realtime Lesson Status Logic
+    function updateLiveStatus() {
+      const now = new Date();
+      
+      // Update header time display
+      const timeStr = now.toLocaleTimeString('uz-UZ', { hour12: false });
+      document.getElementById('liveClock').innerText = timeStr;
+
+      // Determine day
+      const dayNames = ['Yakshanba', 'Dushanba', 'Seshanba', 'Chorshanba', 'Payshanba', 'Juma', 'Shanba'];
+      const currentDayName = dayNames[now.getDay()];
+
+      const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+      const statusTitle = document.getElementById('statusTitle');
+      const statusSubtitle = document.getElementById('statusSubtitle');
+      const statusIcon = document.getElementById('statusIcon');
+      const statusCard = document.getElementById('statusCard');
+
+      if (currentDayName === 'Yakshanba') {
+        statusTitle.innerText = "Bugun Yakshanba - Dam olish kuni";
+        statusSubtitle.innerText = "Ertaga Dushanba darslari boshlanadi";
+        statusIcon.className = "fa-solid fa-mug-hot";
+        return;
+      }
+
+      const todaySchedule = timetableData[currentDayName];
+
+      if (!todaySchedule || todaySchedule.length === 0) {
+        statusTitle.innerText = "Bugun darslar mavjud emas";
+        statusSubtitle.innerText = "Hordiq chiqaring!";
+        return;
+      }
+
+      // Time slots in minutes updated for 30 min big break
+      const p1Start = toMinutes('08:00'), p1End = toMinutes('09:20');
+      const p2Start = toMinutes('09:30'), p2End = toMinutes('10:50');
+      const p3Start = toMinutes('11:20'), p3End = toMinutes('12:40');
+      const p4Start = toMinutes('12:50'), p4End = toMinutes('14:10');
+
+      if (currentMinutes < p1Start) {
+        const diff = p1Start - currentMinutes;
+        statusTitle.innerText = "Darslar hali boshlanmadi";
+        statusSubtitle.innerText = `1-para boshlanishiga ${diff} daqiqa qoldi`;
+        statusIcon.className = "fa-solid fa-hourglass-start";
+      } else if (currentMinutes >= p1Start && currentMinutes <= p1End) {
+        setLessonStatus(todaySchedule, 'I', p1End - currentMinutes);
+      } else if (currentMinutes > p1End && currentMinutes < p2Start) {
+        statusTitle.innerText = "10 daqiqalik Tanaffus";
+        statusSubtitle.innerText = `2-para ${p2Start - currentMinutes} daqiqadan so'ng boshlanadi`;
+        statusIcon.className = "fa-solid fa-bell";
+      } else if (currentMinutes >= p2Start && currentMinutes <= p2End) {
+        setLessonStatus(todaySchedule, 'II', p2End - currentMinutes);
+      } else if (currentMinutes > p2End && currentMinutes < p3Start) {
+        statusTitle.innerText = "Katta Tanaffus (30 daqiqa)";
+        statusSubtitle.innerText = `3-para ${p3Start - currentMinutes} daqiqadan so'ng boshlanadi`;
+        statusIcon.className = "fa-solid fa-utensils";
+      } else if (currentMinutes >= p3Start && currentMinutes <= p3End) {
+        setLessonStatus(todaySchedule, 'III', p3End - currentMinutes);
+      } else if (currentMinutes > p3End && currentMinutes < p4Start) {
+        statusTitle.innerText = "10 daqiqalik Tanaffus";
+        statusSubtitle.innerText = `4-para ${p4Start - currentMinutes} daqiqadan so'ng boshlanadi`;
+        statusIcon.className = "fa-solid fa-bell";
+      } else if (currentMinutes >= p4Start && currentMinutes <= p4End) {
+        setLessonStatus(todaySchedule, 'IV', p4End - currentMinutes);
+      } else {
+        statusTitle.innerText = "Bugungi darslar yakunlandi";
+        statusSubtitle.innerText = "Xayrli kech!";
+        statusIcon.className = "fa-solid fa-moon";
+      }
+    }
+
+    function setLessonStatus(schedule, paraNum, minsLeft) {
+      const lesson = schedule.find(l => l.para === paraNum);
+      const statusTitle = document.getElementById('statusTitle');
+      const statusSubtitle = document.getElementById('statusSubtitle');
+      const statusIcon = document.getElementById('statusIcon');
+
+      if (lesson) {
+        let subj = lesson.subject;
+        if (lesson.isAlternating) {
+          subj = currentWeek === 1 ? lesson.week1.subject : lesson.week2.subject;
+        }
+        statusTitle.innerText = `${paraNum}-Para: ${subj}`;
+        statusSubtitle.innerText = `Tugashiga ${minsLeft} daqiqa qoldi (${lesson.room})`;
+        statusIcon.className = "fa-solid fa-book-open-reader";
+      } else {
+        statusTitle.innerText = `${paraNum}-parada dars yo'q`;
+        statusSubtitle.innerText = `Bo'sh vaqt`;
+        statusIcon.className = "fa-solid fa-coffee";
+      }
+    }
+
+    // Document Ready Initialization
+    window.onload = function() {
+      initTheme();
+      renderSchedule();
+      updateLiveStatus();
+      setInterval(updateLiveStatus, 1000);
+    };
+  </script>
+</body>
+</html>
